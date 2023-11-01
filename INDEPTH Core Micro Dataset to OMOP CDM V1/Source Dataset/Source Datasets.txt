@@ -1,0 +1,12 @@
+The source dataset URLs:
+
+(1) Tanzania - Magu HDSS INDEPTH Core Datase 1994 - 2012 Release 2015
+Reference: Magu HDSS INDEPTH Core Datase 1994 - 2012 Release 2015. Provided by the INDEPTH Network Data Repository. www.indepth-network.org doi:10.7796/INDEPTH.TZ021.CMD2012.V1
+
+(2) Kenya - Nairobi HDSS INDEPTH Core Dataset 2003-2015 (Release 2018)
+Reference: Nairobi HDSS INDEPTH Core Dataset 2003-2015 (Release 2018). Provided by the INDEPTH Network Data Repository. www.indepth-network.org doi:10.7796/INDEPTH.KE031.CMD2015.v2
+
+(3) South Africa - Africa Health Research Institute INDEPTH Core Dataset 2000-2017 (Residents only) - Release 2019
+Reference: Africa Health Research Institute INDEPTH Core Dataset 2000-2017 (Residents only) - Release 2019. Jul 2019. Provided by the INDEPTH Network Data Repository. www.indepth-network.org . doi:10.7796/INDEPTH.ZA031.CMD2017.v1
+
+
