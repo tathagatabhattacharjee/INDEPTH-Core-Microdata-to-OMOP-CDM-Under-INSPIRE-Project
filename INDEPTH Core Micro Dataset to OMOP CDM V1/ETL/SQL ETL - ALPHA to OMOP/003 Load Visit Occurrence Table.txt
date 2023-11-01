@@ -1,0 +1,124 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+--create visit_occurrence table
+CREATE TABLE IF NOT EXISTS visit_occurrence
+(
+    visit_occurrence_id bigint NOT NULL,
+    person_id bigint NOT NULL,
+    visit_concept_id integer NOT NULL,
+    visit_start_date date,
+    visit_start_datetime timestamp without time zone NOT NULL,
+    visit_end_date date,
+    visit_end_datetime timestamp without time zone NOT NULL,
+    visit_type_concept_id integer NOT NULL,
+    provider_id bigint,
+    care_site_id bigint,
+    visit_source_value character varying(50),
+    visit_source_concept_id integer NOT NULL,
+    admitting_source_concept_id integer NOT NULL,
+    admitting_source_value character varying(50),
+    discharge_to_source_value character varying(50),
+    discharge_to_concept_id integer NOT NULL,
+    preceding_visit_occurrence_id bigint,
+    CONSTRAINT xpk_visit_occurrence PRIMARY KEY (visit_occurrence_id)
+);
+
+CREATE SEQUENCE visit_occurrence_id_seq;
+
+-- Set serach path
+SET SEARCH_PATH TO  alpha_synthetic_v1_0;
+
+--Insert the episode start visit dates to convert the wide format to long format
+INSERT INTO alpha_omop_cdm_v1_0.visit_occurrence
+(
+    visit_occurrence_id, 
+    person_id, 
+    visit_concept_id, 
+   visit_start_date, 
+    visit_start_datetime, 
+    visit_end_date, 
+    visit_end_datetime, 
+    visit_type_concept_id, 
+    provider_id, 
+    care_site_id, 
+    visit_source_value, 
+    visit_source_concept_id, 
+    admitting_source_concept_id, 
+    admitting_source_value, 
+    discharge_to_concept_id, 
+    discharge_to_source_value, 
+    preceding_visit_occurrence_id 
+)
+SELECT
+NEXTVAL('alpha_omop_cdm_v1_0.visit_occurrence_id_seq')   AS visit_occurrence_id,
+alpha_omop_cdm_v1_0.person.person_id AS person_id,
+581476 AS visit_concept_id,
+synthetic_residencies.entry_obs_date AS visit_start_date,
+CASE WHEN synthetic_residencies.entry_obs_date IS NULL THEN '9999-12-31 00:00:00'
+          ELSE synthetic_residencies.entry_obs_date
+END AS visit_start_datetime,
+synthetic_residencies.entry_obs_date AS visit_end_date,
+CASE WHEN synthetic_residencies.entry_obs_date IS NULL THEN '9999-12-31 00:00:00'
+          ELSE synthetic_residencies.entry_obs_date
+END AS visit_end_datetime,
+32809 AS visit_type_concept_id,
+NULL AS provider_id,
+NULL AS care_site_id,
+NULL AS visit_source_value,
+0 AS visit_source_concept_id,
+0 AS admitting_source_concept_id,
+NULL AS admitting_source_value,
+0 AS discharge_to_concept_id,
+NULL AS discharge_to_source_value,
+NULL AS preceding_visit_occurrence_id
+FROM synthetic_residencies
+INNER JOIN alpha_omop_cdm_v1_0.person
+ON CAST(alpha_omop_cdm_v1_0.person.person_source_value AS INT) = CAST(synthetic_residencies.idno AS INT);
+
+--Insert the episode end visit dates to convert the wide format to long format
+INSERT INTO alpha_omop_cdm_v1_0.visit_occurrence
+(
+    visit_occurrence_id, 
+   person_id, 
+    visit_concept_id, 
+   visit_start_date, 
+    visit_start_datetime, 
+    visit_end_date, 
+    visit_end_datetime, 
+    visit_type_concept_id, 
+    provider_id, 
+    care_site_id, 
+    visit_source_value, 
+    visit_source_concept_id, 
+    admitting_source_concept_id, 
+    admitting_source_value, 
+    discharge_to_concept_id, 
+    discharge_to_source_value, 
+    preceding_visit_occurrence_id 
+)
+SELECT
+NEXTVAL('alpha_omop_cdm_v1_0.visit_occurrence_id_seq')   AS visit_occurrence_id,
+alpha_omop_cdm_v1_0.person.person_id AS person_id,
+581476 AS visit_concept_id,
+synthetic_residencies.exit_obs_date AS visit_start_date,
+CASE WHEN synthetic_residencies.exit_obs_date IS NULL THEN '9999-12-31 00:00:00'
+          ELSE synthetic_residencies.exit_obs_date
+END AS visit_start_datetime,
+synthetic_residencies.exit_obs_date AS visit_end_date,
+CASE WHEN synthetic_residencies.exit_obs_date IS NULL THEN '9999-12-31 00:00:00'
+          ELSE synthetic_residencies.exit_obs_date
+END AS visit_start_datetime,
+32809 AS visit_type_concept_id,
+NULL AS provider_id,
+NULL AS care_site_id,
+NULL AS visit_source_value,
+0 AS visit_source_concept_id,
+0 AS admitting_source_concept_id,
+NULL AS admitting_source_value,
+0 AS discharge_to_concept_id,
+NULL AS discharge_to_source_value,
+NULL AS preceding_visit_occurrence_id
+FROM synthetic_residencies
+INNER JOIN alpha_omop_cdm_v1_0.person
+ON CAST(alpha_omop_cdm_v1_0.person.person_source_value AS INT) = CAST(synthetic_residencies.idno AS INT);	

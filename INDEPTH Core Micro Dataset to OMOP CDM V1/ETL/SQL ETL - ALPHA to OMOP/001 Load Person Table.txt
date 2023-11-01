@@ -1,0 +1,88 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+--create person table
+CREATE TABLE IF NOT EXISTS person
+(
+    person_id integer NOT NULL,
+    gender_concept_id character varying(4) NOT NULL,
+    year_of_birth double precision NOT NULL,
+    month_of_birth double precision,
+    day_of_birth double precision,
+    birth_datetime timestamp without time zone,
+    death_datetime timestamp without time zone,
+    race_concept_id double precision NOT NULL,
+    ethnicity_concept_id double precision NOT NULL,
+    location_id double precision,
+    provider_id double precision,
+    care_site_id double precision,
+    person_source_value integer,
+    gender_source_value smallint,
+    gender_source_concept_id double precision NOT NULL,
+    race_source_value text,
+    race_source_concept_id double precision NOT NULL,
+    ethnicity_source_value character varying(200),
+    ethnicity_source_concept_id double precision NOT NULL,
+    CONSTRAINT person_pkey PRIMARY KEY (person_id)
+);
+
+-- Create sequence
+CREATE SEQUENCE person_id_seq;
+
+
+-- Set serach path
+SET SEARCH_PATH TO  alpha_synthetic_v1_0;
+
+-- Insert records into person table
+INSERT INTO alpha_omop_cdm_v1_0.person
+(
+    person_id,
+	gender_concept_id,
+	year_of_birth,
+	month_of_birth, 
+	day_of_birth, 
+	birth_datetime,
+	death_datetime,
+	race_concept_id,
+	ethnicity_concept_id,
+	location_id,
+	provider_id,
+	care_site_id,
+	person_source_value,
+	gender_source_value,
+	gender_source_concept_id,
+	race_source_value,
+	race_source_concept_id,
+	ethnicity_source_value,
+	ethnicity_source_concept_id
+)
+SELECT
+DISTINCT ON (idno)
+NEXTVAL('alpha_omop_cdm_v1_0.person_id_seq') AS person_id,
+CASE WHEN synthetic_residencies.sex = 1 THEN 8507
+          WHEN synthetic_residencies.sex = 2 THEN 8532
+          WHEN synthetic_residencies.sex = 9 THEN 0
+          ELSE 0
+ END AS gender_concept_id,
+EXTRACT(YEAR FROM synthetic_residencies.dob) AS year_of_birth,
+EXTRACT(MONTH FROM synthetic_residencies.dob) AS month_of_birth,
+EXTRACT(DAY FROM synthetic_residencies.dob) AS day_of_birth,
+synthetic_residencies.dob AS birth_datetime,
+CASE WHEN synthetic_residencies.exit_type = 12 THEN synthetic_residencies.exit_date
+            ELSE NULL
+ END AS death_datetime,
+38003600 AS race_concept_id,
+38003564 AS ethnicity_concept_id,
+CAST(synthetic_residencies.hhold_id AS INT) AS location_id,
+NULL AS provider_id,
+NULL AS care_site_id,
+CAST(synthetic_residencies.idno AS INT) AS person_source_value,
+synthetic_residencies.sex AS gender_source_value,
+0 AS gender_source_concept_id,
+NULL AS race_source_value,
+0 AS race_source_concept_id,
+NULL AS ethnicity_source_value,
+0 AS ethnicity_source_concept_id
+FROM synthetic_residencies
+ORDER BY idno, entry_date DESC;
+

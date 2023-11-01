@@ -1,0 +1,47 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+--create location_history table
+CREATE TABLE IF NOT EXISTS location_history
+(
+    location_id bigint NOT NULL,
+    location_id bigint NOT NULL,
+    relationship_type_concept_id integer NOT NULL,
+    domain_id character varying(50),
+    entity_id bigint NOT NULL,
+    start_date date NOT NULL,
+    end_date date,
+    CONSTRAINT xpk_location_history PRIMARY KEY (location_history_id)
+);
+
+CREATE SEQUENCE location_id_seq;
+
+-- Set search path
+SET SEARCH_PATH TO  alpha_synthetic_v1_0;
+
+INSERT INTO alpha_omop_cdm_v1_0.location_history
+(
+    location_history_id,
+	location_id,
+    relationship_type_concept_id, 
+    domain_id, 
+    entity_id,
+    start_date,
+    end_date
+)
+SELECT
+    NEXTVAL('alpha_omop_cdm_v1_0.location_id_seq')   AS location_history_id,
+	1 AS location_id,
+    4049366 AS relationship_type_concept_id,
+    4129409 AS domain_id,
+    alpha_omop_cdm_v1_0.person.person_id AS entity_id,
+    CASE WHEN synthetic_residencies.entry_date IS NULL THEN '9999-12-31'
+               ELSE synthetic_residencies.entry_date 
+    END AS start_date,
+    synthetic_residencies.exit_date AS end_date
+FROM synthetic_residencies
+INNER JOIN alpha_omop_cdm_v1_0.person
+ON CAST(alpha_omop_cdm_v1_0.person.person_source_value AS INT) = CAST(synthetic_residencies.idno AS INT);
+
+
+SELECT * from alpha_omop_cdm_v1_0.location_history

@@ -1,0 +1,39 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+--create observation_period table
+CREATE TABLE IF NOT EXISTS observation_period
+(
+    observation_period_id bigint NOT NULL,
+    person_id integer NOT NULL,
+    observation_period_start_date date NOT NULL,
+    observation_period_end_date date NOT NULL,
+    period_type_concept_id integer NOT NULL,
+    CONSTRAINT xpk_observation_period PRIMARY KEY (observation_period_id)
+);
+
+-- Create Sequence
+CREATE SEQUENCE observation_period_id_seq;
+
+-- Set serach path
+SET SEARCH_PATH TO  alpha_synthetic_v1_0;
+
+-- Insert records into observation_period table
+INSERT INTO  alpha_omop_cdm_v1_0.observation_period
+(
+    observation_period_id, 
+    person_id, 
+    observation_period_start_date, 
+    observation_period_end_date, 
+    period_type_concept_id
+)
+SELECT
+    NEXTVAL('alpha_omop_cdm_v1_0.observation_period_id_seq')  AS observation_period_id,
+    alpha_omop_cdm_v1_0.person.person_id AS person_id,
+    synthetic_residencies.entry_date AS observation_period_start_date,
+    synthetic_residencies.exit_date AS observation_period_end_date,
+    44814723 AS period_type_concept_id
+FROM synthetic_residencies
+INNER JOIN alpha_omop_cdm_v1_0.person
+ON CAST(alpha_omop_cdm_v1_0.person.person_source_value AS INT) = CAST(synthetic_residencies.idno AS INT);
+

@@ -1,0 +1,11 @@
+-- SQL statement to update the visit_occurrence_id by linking it to the visit_occurrence table
+
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+UPDATE observation
+SET visit_occurrence_id = visit_occurrence.visit_occurrence_id
+FROM visit_occurrence
+WHERE observation.person_id = visit_occurrence.person_id
+AND observation.observation_date = visit_occurrence.visit_start_date
+AND visit_occurrence.visit_type_concept_id = 32809;

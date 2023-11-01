@@ -1,0 +1,1316 @@
+<job>
+  <name>03 Create OMOP CDM Tables</name>
+  <description/>
+  <extended_description/>
+  <job_version/>
+  <directory>/</directory>
+  <created_user>-</created_user>
+  <created_date>2023/10/14 11:50:13.490</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2023/10/14 12:02:46.321</modified_date>
+  <parameters>
+    </parameters>
+  <connection>
+    <name>INSPIRE Datahub Paper</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>inspire_datahub_paper</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa79591a715bb60df9ea3cf</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <slaveservers>
+    </slaveservers>
+  <job-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <size_limit_lines/>
+    <interval/>
+    <timeout_days/>
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection/>
+    <schema/>
+    <table/>
+    <timeout_days/>
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>Start</name>
+      <description/>
+      <type>SPECIAL</type>
+      <attributes/>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>160</xloc>
+      <yloc>144</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>Set variables</name>
+      <description/>
+      <type>SET_VARIABLES</type>
+      <attributes/>
+      <replacevars>Y</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>384</xloc>
+      <yloc>144</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>SQL - Create Schema for Target OMOP 5.4</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>CREATE SCHEMA IF NOT EXISTS ${cdm_schema};</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>INSPIRE Datahub Paper</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>144</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>SQL - Create OMOP 5.4 Tables</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>--postgresql CDM DDL Specification for OMOP Common Data Model 5.4
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.PERSON (
+			person_id integer NOT NULL,
+			gender_concept_id integer NOT NULL,
+			year_of_birth integer NOT NULL,
+			month_of_birth integer NULL,
+			day_of_birth integer NULL,
+			birth_datetime TIMESTAMP NULL,
+			race_concept_id integer NOT NULL,
+			ethnicity_concept_id integer NOT NULL,
+			location_id integer NULL,
+			provider_id integer NULL,
+			care_site_id integer NULL,
+			person_source_value varchar(50) NULL,
+			gender_source_value varchar(50) NULL,
+			gender_source_concept_id integer NULL,
+			race_source_value varchar(50) NULL,
+			race_source_concept_id integer NULL,
+			ethnicity_source_value varchar(50) NULL,
+			ethnicity_source_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.OBSERVATION_PERIOD (
+			observation_period_id integer NOT NULL,
+			person_id integer NOT NULL,
+			observation_period_start_date date NOT NULL,
+			observation_period_end_date date NOT NULL,
+			period_type_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.VISIT_OCCURRENCE (
+			visit_occurrence_id integer NOT NULL,
+			person_id integer NOT NULL,
+			visit_concept_id integer NOT NULL,
+			visit_start_date date NOT NULL,
+			visit_start_datetime TIMESTAMP NULL,
+			visit_end_date date NOT NULL,
+			visit_end_datetime TIMESTAMP NULL,
+			visit_type_concept_id Integer NOT NULL,
+			provider_id integer NULL,
+			care_site_id integer NULL,
+			visit_source_value varchar(50) NULL,
+			visit_source_concept_id integer NULL,
+			admitted_from_concept_id integer NULL,
+			admitted_from_source_value varchar(50) NULL,
+			discharged_to_concept_id integer NULL,
+			discharged_to_source_value varchar(50) NULL,
+			preceding_visit_occurrence_id integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.VISIT_DETAIL (
+			visit_detail_id integer NOT NULL,
+			person_id integer NOT NULL,
+			visit_detail_concept_id integer NOT NULL,
+			visit_detail_start_date date NOT NULL,
+			visit_detail_start_datetime TIMESTAMP NULL,
+			visit_detail_end_date date NOT NULL,
+			visit_detail_end_datetime TIMESTAMP NULL,
+			visit_detail_type_concept_id integer NOT NULL,
+			provider_id integer NULL,
+			care_site_id integer NULL,
+			visit_detail_source_value varchar(50) NULL,
+			visit_detail_source_concept_id Integer NULL,
+			admitted_from_concept_id Integer NULL,
+			admitted_from_source_value varchar(50) NULL,
+			discharged_to_source_value varchar(50) NULL,
+			discharged_to_concept_id integer NULL,
+			preceding_visit_detail_id integer NULL,
+			parent_visit_detail_id integer NULL,
+			visit_occurrence_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CONDITION_OCCURRENCE (
+			condition_occurrence_id integer NOT NULL,
+			person_id integer NOT NULL,
+			condition_concept_id integer NOT NULL,
+			condition_start_date date NOT NULL,
+			condition_start_datetime TIMESTAMP NULL,
+			condition_end_date date NULL,
+			condition_end_datetime TIMESTAMP NULL,
+			condition_type_concept_id integer NOT NULL,
+			condition_status_concept_id integer NULL,
+			stop_reason varchar(20) NULL,
+			provider_id integer NULL,
+			visit_occurrence_id integer NULL,
+			visit_detail_id integer NULL,
+			condition_source_value varchar(50) NULL,
+			condition_source_concept_id integer NULL,
+			condition_status_source_value varchar(50) NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.DRUG_EXPOSURE (
+			drug_exposure_id integer NOT NULL,
+			person_id integer NOT NULL,
+			drug_concept_id integer NOT NULL,
+			drug_exposure_start_date date NOT NULL,
+			drug_exposure_start_datetime TIMESTAMP NULL,
+			drug_exposure_end_date date NOT NULL,
+			drug_exposure_end_datetime TIMESTAMP NULL,
+			verbatim_end_date date NULL,
+			drug_type_concept_id integer NOT NULL,
+			stop_reason varchar(20) NULL,
+			refills integer NULL,
+			quantity NUMERIC NULL,
+			days_supply integer NULL,
+			sig TEXT NULL,
+			route_concept_id integer NULL,
+			lot_number varchar(50) NULL,
+			provider_id integer NULL,
+			visit_occurrence_id integer NULL,
+			visit_detail_id integer NULL,
+			drug_source_value varchar(50) NULL,
+			drug_source_concept_id integer NULL,
+			route_source_value varchar(50) NULL,
+			dose_unit_source_value varchar(50) NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.PROCEDURE_OCCURRENCE (
+			procedure_occurrence_id integer NOT NULL,
+			person_id integer NOT NULL,
+			procedure_concept_id integer NOT NULL,
+			procedure_date date NOT NULL,
+			procedure_datetime TIMESTAMP NULL,
+			procedure_end_date date NULL,
+			procedure_end_datetime TIMESTAMP NULL,
+			procedure_type_concept_id integer NOT NULL,
+			modifier_concept_id integer NULL,
+			quantity integer NULL,
+			provider_id integer NULL,
+			visit_occurrence_id integer NULL,
+			visit_detail_id integer NULL,
+			procedure_source_value varchar(50) NULL,
+			procedure_source_concept_id integer NULL,
+			modifier_source_value varchar(50) NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.DEVICE_EXPOSURE (
+			device_exposure_id integer NOT NULL,
+			person_id integer NOT NULL,
+			device_concept_id integer NOT NULL,
+			device_exposure_start_date date NOT NULL,
+			device_exposure_start_datetime TIMESTAMP NULL,
+			device_exposure_end_date date NULL,
+			device_exposure_end_datetime TIMESTAMP NULL,
+			device_type_concept_id integer NOT NULL,
+			unique_device_id varchar(255) NULL,
+			production_id varchar(255) NULL,
+			quantity integer NULL,
+			provider_id integer NULL,
+			visit_occurrence_id integer NULL,
+			visit_detail_id integer NULL,
+			device_source_value varchar(50) NULL,
+			device_source_concept_id integer NULL,
+			unit_concept_id integer NULL,
+			unit_source_value varchar(50) NULL,
+			unit_source_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.MEASUREMENT (
+			measurement_id integer NOT NULL,
+			person_id integer NOT NULL,
+			measurement_concept_id integer NOT NULL,
+			measurement_date date NOT NULL,
+			measurement_datetime TIMESTAMP NULL,
+			measurement_time varchar(10) NULL,
+			measurement_type_concept_id integer NOT NULL,
+			operator_concept_id integer NULL,
+			value_as_number NUMERIC NULL,
+			value_as_concept_id integer NULL,
+			unit_concept_id integer NULL,
+			range_low NUMERIC NULL,
+			range_high NUMERIC NULL,
+			provider_id integer NULL,
+			visit_occurrence_id integer NULL,
+			visit_detail_id integer NULL,
+			measurement_source_value varchar(50) NULL,
+			measurement_source_concept_id integer NULL,
+			unit_source_value varchar(50) NULL,
+			unit_source_concept_id integer NULL,
+			value_source_value varchar(50) NULL,
+			measurement_event_id bigint NULL,
+			meas_event_field_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.OBSERVATION (
+			observation_id integer NOT NULL,
+			person_id integer NOT NULL,
+			observation_concept_id integer NOT NULL,
+			observation_date date NOT NULL,
+			observation_datetime TIMESTAMP NULL,
+			observation_type_concept_id integer NOT NULL,
+			value_as_number NUMERIC NULL,
+			value_as_string varchar(60) NULL,
+			value_as_concept_id Integer NULL,
+			qualifier_concept_id integer NULL,
+			unit_concept_id integer NULL,
+			provider_id integer NULL,
+			visit_occurrence_id integer NULL,
+			visit_detail_id integer NULL,
+			observation_source_value varchar(50) NULL,
+			observation_source_concept_id integer NULL,
+			unit_source_value varchar(50) NULL,
+			qualifier_source_value varchar(50) NULL,
+			value_source_value varchar(50) NULL,
+			observation_event_id bigint NULL,
+			obs_event_field_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.DEATH (
+			person_id integer NOT NULL,
+			death_date date NOT NULL,
+			death_datetime TIMESTAMP NULL,
+			death_type_concept_id integer NULL,
+			cause_concept_id integer NULL,
+			cause_source_value varchar(50) NULL,
+			cause_source_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.NOTE (
+			note_id integer NOT NULL,
+			person_id integer NOT NULL,
+			note_date date NOT NULL,
+			note_datetime TIMESTAMP NULL,
+			note_type_concept_id integer NOT NULL,
+			note_class_concept_id integer NOT NULL,
+			note_title varchar(250) NULL,
+			note_text TEXT NOT NULL,
+			encoding_concept_id integer NOT NULL,
+			language_concept_id integer NOT NULL,
+			provider_id integer NULL,
+			visit_occurrence_id integer NULL,
+			visit_detail_id integer NULL,
+			note_source_value varchar(50) NULL,
+			note_event_id bigint NULL,
+			note_event_field_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.NOTE_NLP (
+			note_nlp_id integer NOT NULL,
+			note_id integer NOT NULL,
+			section_concept_id integer NULL,
+			snippet varchar(250) NULL,
+			"offset" varchar(50) NULL,
+			lexical_variant varchar(250) NOT NULL,
+			note_nlp_concept_id integer NULL,
+			note_nlp_source_concept_id integer NULL,
+			nlp_system varchar(250) NULL,
+			nlp_date date NOT NULL,
+			nlp_datetime TIMESTAMP NULL,
+			term_exists varchar(1) NULL,
+			term_temporal varchar(50) NULL,
+			term_modifiers varchar(2000) NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.SPECIMEN (
+			specimen_id integer NOT NULL,
+			person_id integer NOT NULL,
+			specimen_concept_id integer NOT NULL,
+			specimen_type_concept_id integer NOT NULL,
+			specimen_date date NOT NULL,
+			specimen_datetime TIMESTAMP NULL,
+			quantity NUMERIC NULL,
+			unit_concept_id integer NULL,
+			anatomic_site_concept_id integer NULL,
+			disease_status_concept_id integer NULL,
+			specimen_source_id varchar(50) NULL,
+			specimen_source_value varchar(50) NULL,
+			unit_source_value varchar(50) NULL,
+			anatomic_site_source_value varchar(50) NULL,
+			disease_status_source_value varchar(50) NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.FACT_RELATIONSHIP (
+			domain_concept_id_1 integer NOT NULL,
+			fact_id_1 integer NOT NULL,
+			domain_concept_id_2 integer NOT NULL,
+			fact_id_2 integer NOT NULL,
+			relationship_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.LOCATION (
+			location_id integer NOT NULL,
+			address_1 varchar(50) NULL,
+			address_2 varchar(50) NULL,
+			city varchar(50) NULL,
+			state varchar(2) NULL,
+			zip varchar(9) NULL,
+			county varchar(20) NULL,
+			location_source_value varchar(50) NULL,
+			country_concept_id integer NULL,
+			country_source_value varchar(80) NULL,
+			latitude NUMERIC NULL,
+			longitude NUMERIC NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CARE_SITE (
+			care_site_id integer NOT NULL,
+			care_site_name varchar(255) NULL,
+			place_of_service_concept_id integer NULL,
+			location_id integer NULL,
+			care_site_source_value varchar(50) NULL,
+			place_of_service_source_value varchar(50) NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.PROVIDER (
+			provider_id integer NOT NULL,
+			provider_name varchar(255) NULL,
+			npi varchar(20) NULL,
+			dea varchar(20) NULL,
+			specialty_concept_id integer NULL,
+			care_site_id integer NULL,
+			year_of_birth integer NULL,
+			gender_concept_id integer NULL,
+			provider_source_value varchar(50) NULL,
+			specialty_source_value varchar(50) NULL,
+			specialty_source_concept_id integer NULL,
+			gender_source_value varchar(50) NULL,
+			gender_source_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.PAYER_PLAN_PERIOD (
+			payer_plan_period_id integer NOT NULL,
+			person_id integer NOT NULL,
+			payer_plan_period_start_date date NOT NULL,
+			payer_plan_period_end_date date NOT NULL,
+			payer_concept_id integer NULL,
+			payer_source_value varchar(50) NULL,
+			payer_source_concept_id integer NULL,
+			plan_concept_id integer NULL,
+			plan_source_value varchar(50) NULL,
+			plan_source_concept_id integer NULL,
+			sponsor_concept_id integer NULL,
+			sponsor_source_value varchar(50) NULL,
+			sponsor_source_concept_id integer NULL,
+			family_source_value varchar(50) NULL,
+			stop_reason_concept_id integer NULL,
+			stop_reason_source_value varchar(50) NULL,
+			stop_reason_source_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.COST (
+			cost_id integer NOT NULL,
+			cost_event_id integer NOT NULL,
+			cost_domain_id varchar(20) NOT NULL,
+			cost_type_concept_id integer NOT NULL,
+			currency_concept_id integer NULL,
+			total_charge NUMERIC NULL,
+			total_cost NUMERIC NULL,
+			total_paid NUMERIC NULL,
+			paid_by_payer NUMERIC NULL,
+			paid_by_patient NUMERIC NULL,
+			paid_patient_copay NUMERIC NULL,
+			paid_patient_coinsurance NUMERIC NULL,
+			paid_patient_deductible NUMERIC NULL,
+			paid_by_primary NUMERIC NULL,
+			paid_ingredient_cost NUMERIC NULL,
+			paid_dispensing_fee NUMERIC NULL,
+			payer_plan_period_id integer NULL,
+			amount_allowed NUMERIC NULL,
+			revenue_code_concept_id integer NULL,
+			revenue_code_source_value varchar(50) NULL,
+			drg_concept_id integer NULL,
+			drg_source_value varchar(3) NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.DRUG_ERA (
+			drug_era_id integer NOT NULL,
+			person_id integer NOT NULL,
+			drug_concept_id integer NOT NULL,
+			drug_era_start_date TIMESTAMP NOT NULL,
+			drug_era_end_date TIMESTAMP NOT NULL,
+			drug_exposure_count integer NULL,
+			gap_days integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.DOSE_ERA (
+			dose_era_id integer NOT NULL,
+			person_id integer NOT NULL,
+			drug_concept_id integer NOT NULL,
+			unit_concept_id integer NOT NULL,
+			dose_value NUMERIC NOT NULL,
+			dose_era_start_date TIMESTAMP NOT NULL,
+			dose_era_end_date TIMESTAMP NOT NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CONDITION_ERA (
+			condition_era_id integer NOT NULL,
+			person_id integer NOT NULL,
+			condition_concept_id integer NOT NULL,
+			condition_era_start_date TIMESTAMP NOT NULL,
+			condition_era_end_date TIMESTAMP NOT NULL,
+			condition_occurrence_count integer NULL );
+
+--HINT DISTRIBUTE ON KEY (person_id)
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.EPISODE (
+			episode_id bigint NOT NULL,
+			person_id bigint NOT NULL,
+			episode_concept_id integer NOT NULL,
+			episode_start_date date NOT NULL,
+			episode_start_datetime TIMESTAMP NULL,
+			episode_end_date date NULL,
+			episode_end_datetime TIMESTAMP NULL,
+			episode_parent_id bigint NULL,
+			episode_number integer NULL,
+			episode_object_concept_id integer NOT NULL,
+			episode_type_concept_id integer NOT NULL,
+			episode_source_value varchar(50) NULL,
+			episode_source_concept_id integer NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.EPISODE_EVENT (
+			episode_id bigint NOT NULL,
+			event_id bigint NOT NULL,
+			episode_event_field_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.METADATA (
+			metadata_id integer NOT NULL,
+			metadata_concept_id integer NOT NULL,
+			metadata_type_concept_id integer NOT NULL,
+			name varchar(250) NOT NULL,
+			value_as_string varchar(250) NULL,
+			value_as_concept_id integer NULL,
+			value_as_number NUMERIC NULL,
+			metadata_date date NULL,
+			metadata_datetime TIMESTAMP NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CDM_SOURCE (
+			cdm_source_name varchar(255) NOT NULL,
+			cdm_source_abbreviation varchar(25) NOT NULL,
+			cdm_holder varchar(255) NOT NULL,
+			source_description TEXT NULL,
+			source_documentation_reference varchar(255) NULL,
+			cdm_etl_reference varchar(255) NULL,
+			source_release_date date NOT NULL,
+			cdm_release_date date NOT NULL,
+			cdm_version varchar(10) NULL,
+			cdm_version_concept_id integer NOT NULL,
+			vocabulary_version varchar(20) NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CONCEPT (
+			concept_id integer NOT NULL,
+			concept_name varchar(255) NOT NULL,
+			domain_id varchar(20) NOT NULL,
+			vocabulary_id varchar(20) NOT NULL,
+			concept_class_id varchar(20) NOT NULL,
+			standard_concept varchar(1) NULL,
+			concept_code varchar(50) NOT NULL,
+			valid_start_date date NOT NULL,
+			valid_end_date date NOT NULL,
+			invalid_reason varchar(1) NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.VOCABULARY (
+			vocabulary_id varchar(20) NOT NULL,
+			vocabulary_name varchar(255) NOT NULL,
+			vocabulary_reference varchar(255) NULL,
+			vocabulary_version varchar(255) NULL,
+			vocabulary_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.DOMAIN (
+			domain_id varchar(20) NOT NULL,
+			domain_name varchar(255) NOT NULL,
+			domain_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CONCEPT_CLASS (
+			concept_class_id varchar(20) NOT NULL,
+			concept_class_name varchar(255) NOT NULL,
+			concept_class_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CONCEPT_RELATIONSHIP (
+			concept_id_1 integer NOT NULL,
+			concept_id_2 integer NOT NULL,
+			relationship_id varchar(20) NOT NULL,
+			valid_start_date date NOT NULL,
+			valid_end_date date NOT NULL,
+			invalid_reason varchar(1) NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.RELATIONSHIP (
+			relationship_id varchar(20) NOT NULL,
+			relationship_name varchar(255) NOT NULL,
+			is_hierarchical varchar(1) NOT NULL,
+			defines_ancestry varchar(1) NOT NULL,
+			reverse_relationship_id varchar(20) NOT NULL,
+			relationship_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CONCEPT_SYNONYM (
+			concept_id integer NOT NULL,
+			concept_synonym_name varchar(1000) NOT NULL,
+			language_concept_id integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.CONCEPT_ANCESTOR (
+			ancestor_concept_id integer NOT NULL,
+			descendant_concept_id integer NOT NULL,
+			min_levels_of_separation integer NOT NULL,
+			max_levels_of_separation integer NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.SOURCE_TO_CONCEPT_MAP (
+			source_code varchar(50) NOT NULL,
+			source_concept_id integer NOT NULL,
+			source_vocabulary_id varchar(20) NOT NULL,
+			source_code_description varchar(255) NULL,
+			target_concept_id integer NOT NULL,
+			target_vocabulary_id varchar(20) NOT NULL,
+			valid_start_date date NOT NULL,
+			valid_end_date date NOT NULL,
+			invalid_reason varchar(1) NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.DRUG_STRENGTH (
+			drug_concept_id integer NOT NULL,
+			ingredient_concept_id integer NOT NULL,
+			amount_value NUMERIC NULL,
+			amount_unit_concept_id integer NULL,
+			numerator_value NUMERIC NULL,
+			numerator_unit_concept_id integer NULL,
+			denominator_value NUMERIC NULL,
+			denominator_unit_concept_id integer NULL,
+			box_size integer NULL,
+			valid_start_date date NOT NULL,
+			valid_end_date date NOT NULL,
+			invalid_reason varchar(1) NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.COHORT (
+			cohort_definition_id integer NOT NULL,
+			subject_id integer NOT NULL,
+			cohort_start_date date NOT NULL,
+			cohort_end_date date NOT NULL );
+
+--HINT DISTRIBUTE ON RANDOM
+CREATE TABLE IF NOT EXISTS ${cdm_schema}.COHORT_DEFINITION (
+			cohort_definition_id integer NOT NULL,
+			cohort_definition_name varchar(255) NOT NULL,
+			cohort_definition_description TEXT NULL,
+			definition_type_concept_id integer NOT NULL,
+			cohort_definition_syntax TEXT NULL,
+			subject_concept_id integer NOT NULL,
+			cohort_initiation_date date NULL );</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>INSPIRE Datahub Paper</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1040</xloc>
+      <yloc>144</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>SQL - Drop PKs IF EXISTS</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>--Postgresql CDM Drop Primary Key Constraints for OMOP Common Data Model 5.4 to speed up inserts
+
+ALTER TABLE ${cdm_schema}.PERSON DROP CONSTRAINT IF EXISTS xpk_PERSON CASCADE;
+
+ALTER TABLE ${cdm_schema}.OBSERVATION_PERIOD DROP CONSTRAINT IF EXISTS xpk_OBSERVATION_PERIOD CASCADE;
+
+ALTER TABLE ${cdm_schema}.VISIT_OCCURRENCE DROP CONSTRAINT IF EXISTS xpk_VISIT_OCCURRENCE CASCADE;
+
+ALTER TABLE ${cdm_schema}.VISIT_DETAIL DROP CONSTRAINT IF EXISTS xpk_VISIT_DETAIL CASCADE;
+
+ALTER TABLE ${cdm_schema}.CONDITION_OCCURRENCE DROP CONSTRAINT IF EXISTS xpk_CONDITION_OCCURRENCE CASCADE;
+
+ALTER TABLE ${cdm_schema}.DRUG_EXPOSURE DROP CONSTRAINT IF EXISTS xpk_DRUG_EXPOSURE CASCADE;
+
+ALTER TABLE ${cdm_schema}.PROCEDURE_OCCURRENCE DROP CONSTRAINT IF EXISTS xpk_PROCEDURE_OCCURRENCE CASCADE;
+
+ALTER TABLE ${cdm_schema}.DEVICE_EXPOSURE DROP CONSTRAINT IF EXISTS xpk_DEVICE_EXPOSURE CASCADE;
+
+ALTER TABLE ${cdm_schema}.MEASUREMENT DROP CONSTRAINT IF EXISTS xpk_MEASUREMENT CASCADE;
+
+ALTER TABLE ${cdm_schema}.OBSERVATION DROP CONSTRAINT IF EXISTS xpk_OBSERVATION CASCADE;
+
+ALTER TABLE ${cdm_schema}.NOTE DROP CONSTRAINT IF EXISTS xpk_NOTE CASCADE;
+
+ALTER TABLE ${cdm_schema}.NOTE_NLP DROP CONSTRAINT IF EXISTS xpk_NOTE_NLP CASCADE;
+
+ALTER TABLE ${cdm_schema}.SPECIMEN DROP CONSTRAINT IF EXISTS xpk_SPECIMEN CASCADE;
+
+ALTER TABLE ${cdm_schema}.LOCATION DROP CONSTRAINT IF EXISTS xpk_LOCATION CASCADE;
+
+ALTER TABLE ${cdm_schema}.CARE_SITE DROP CONSTRAINT IF EXISTS xpk_CARE_SITE CASCADE;
+
+ALTER TABLE ${cdm_schema}.PROVIDER DROP CONSTRAINT IF EXISTS xpk_PROVIDER CASCADE;
+
+ALTER TABLE ${cdm_schema}.PAYER_PLAN_PERIOD DROP CONSTRAINT IF EXISTS xpk_PAYER_PLAN_PERIOD CASCADE;
+
+ALTER TABLE ${cdm_schema}.COST DROP CONSTRAINT IF EXISTS xpk_COST CASCADE;
+
+ALTER TABLE ${cdm_schema}.DRUG_ERA DROP CONSTRAINT IF EXISTS xpk_DRUG_ERA CASCADE;
+
+ALTER TABLE ${cdm_schema}.DOSE_ERA DROP CONSTRAINT IF EXISTS xpk_DOSE_ERA CASCADE;
+
+ALTER TABLE ${cdm_schema}.CONDITION_ERA DROP CONSTRAINT IF EXISTS xpk_CONDITION_ERA CASCADE;
+
+ALTER TABLE ${cdm_schema}.EPISODE DROP CONSTRAINT IF EXISTS xpk_EPISODE CASCADE;
+
+ALTER TABLE ${cdm_schema}.METADATA DROP CONSTRAINT IF EXISTS xpk_METADATA CASCADE;
+
+ALTER TABLE ${cdm_schema}.CONCEPT DROP CONSTRAINT IF EXISTS xpk_CONCEPT CASCADE;
+
+ALTER TABLE ${cdm_schema}.VOCABULARY DROP CONSTRAINT IF EXISTS xpk_VOCABULARY CASCADE;
+
+ALTER TABLE ${cdm_schema}.DOMAIN DROP CONSTRAINT IF EXISTS xpk_DOMAIN CASCADE;
+
+ALTER TABLE ${cdm_schema}.CONCEPT_CLASS DROP CONSTRAINT IF EXISTS xpk_CONCEPT_CLASS CASCADE;
+
+ALTER TABLE ${cdm_schema}.RELATIONSHIP DROP CONSTRAINT IF EXISTS xpk_RELATIONSHIP CASCADE;
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>INSPIRE Datahub Paper</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1040</xloc>
+      <yloc>288</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <attributes/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1056</xloc>
+      <yloc>432</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>SQL - Drop FK Constraints IF EXISTS</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>--postgresql CDM Drop Foreign Key Constraints for OMOP Common Data Model 5.4 to speed up inserts
+
+ALTER TABLE ${cdm_schema}.condition_occurrence DROP CONSTRAINT IF EXISTS fpk_condition_occurrence_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.condition_occurrence DROP CONSTRAINT IF EXISTS fpk_condition_occurrence_visit_detail_id;
+ALTER TABLE ${cdm_schema}.drug_exposure DROP CONSTRAINT IF EXISTS fpk_drug_exposure_person_id;
+ALTER TABLE ${cdm_schema}.drug_exposure DROP CONSTRAINT IF EXISTS fpk_drug_exposure_provider_id;
+ALTER TABLE ${cdm_schema}.drug_exposure DROP CONSTRAINT IF EXISTS fpk_drug_exposure_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.drug_exposure DROP CONSTRAINT IF EXISTS fpk_drug_exposure_visit_detail_id;
+ALTER TABLE ${cdm_schema}.procedure_occurrence DROP CONSTRAINT IF EXISTS fpk_procedure_occurrence_provider_id;
+ALTER TABLE ${cdm_schema}.procedure_occurrence DROP CONSTRAINT IF EXISTS fpk_procedure_occurrence_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.procedure_occurrence DROP CONSTRAINT IF EXISTS fpk_procedure_occurrence_visit_detail_id;
+ALTER TABLE ${cdm_schema}.device_exposure DROP CONSTRAINT IF EXISTS fpk_device_exposure_person_id;
+ALTER TABLE ${cdm_schema}.device_exposure DROP CONSTRAINT IF EXISTS fpk_device_exposure_provider_id;
+ALTER TABLE ${cdm_schema}.device_exposure DROP CONSTRAINT IF EXISTS fpk_device_exposure_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.device_exposure DROP CONSTRAINT IF EXISTS fpk_device_exposure_visit_detail_id;
+ALTER TABLE ${cdm_schema}.measurement DROP CONSTRAINT IF EXISTS fpk_measurement_person_id;
+ALTER TABLE ${cdm_schema}.measurement DROP CONSTRAINT IF EXISTS fpk_measurement_provider_id;
+ALTER TABLE ${cdm_schema}.measurement DROP CONSTRAINT IF EXISTS fpk_measurement_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.measurement DROP CONSTRAINT IF EXISTS fpk_measurement_visit_detail_id;
+ALTER TABLE ${cdm_schema}.observation DROP CONSTRAINT IF EXISTS fpk_observation_person_id;
+ALTER TABLE ${cdm_schema}.person DROP CONSTRAINT IF EXISTS fpk_person_location_id;
+ALTER TABLE ${cdm_schema}.person DROP CONSTRAINT IF EXISTS fpk_person_provider_id;
+ALTER TABLE ${cdm_schema}.person DROP CONSTRAINT IF EXISTS fpk_person_care_site_id;
+ALTER TABLE ${cdm_schema}.observation_period DROP CONSTRAINT IF EXISTS fpk_observation_period_person_id;
+ALTER TABLE ${cdm_schema}.visit_occurrence DROP CONSTRAINT IF EXISTS fpk_visit_occurrence_person_id;
+ALTER TABLE ${cdm_schema}.visit_occurrence DROP CONSTRAINT IF EXISTS fpk_visit_occurrence_provider_id;
+ALTER TABLE ${cdm_schema}.visit_occurrence DROP CONSTRAINT IF EXISTS fpk_visit_occurrence_care_site_id;
+ALTER TABLE ${cdm_schema}.visit_occurrence DROP CONSTRAINT IF EXISTS fpk_visit_occurrence_preceding_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.visit_detail DROP CONSTRAINT IF EXISTS fpk_visit_detail_person_id;
+ALTER TABLE ${cdm_schema}.visit_detail DROP CONSTRAINT IF EXISTS fpk_visit_detail_provider_id;
+ALTER TABLE ${cdm_schema}.visit_detail DROP CONSTRAINT IF EXISTS fpk_visit_detail_care_site_id;
+ALTER TABLE ${cdm_schema}.visit_detail DROP CONSTRAINT IF EXISTS fpk_visit_detail_preceding_visit_detail_id;
+ALTER TABLE ${cdm_schema}.visit_detail DROP CONSTRAINT IF EXISTS fpk_visit_detail_parent_visit_detail_id;
+ALTER TABLE ${cdm_schema}.visit_detail DROP CONSTRAINT IF EXISTS fpk_visit_detail_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.condition_occurrence DROP CONSTRAINT IF EXISTS fpk_condition_occurrence_person_id;
+ALTER TABLE ${cdm_schema}.condition_occurrence DROP CONSTRAINT IF EXISTS fpk_condition_occurrence_provider_id;
+ALTER TABLE ${cdm_schema}.observation DROP CONSTRAINT IF EXISTS fpk_observation_provider_id;
+ALTER TABLE ${cdm_schema}.observation DROP CONSTRAINT IF EXISTS fpk_observation_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.observation DROP CONSTRAINT IF EXISTS fpk_observation_visit_detail_id;
+ALTER TABLE ${cdm_schema}.death DROP CONSTRAINT IF EXISTS fpk_death_person_id;
+ALTER TABLE ${cdm_schema}.note DROP CONSTRAINT IF EXISTS fpk_note_person_id;
+ALTER TABLE ${cdm_schema}.note DROP CONSTRAINT IF EXISTS fpk_note_provider_id;
+ALTER TABLE ${cdm_schema}.note DROP CONSTRAINT IF EXISTS fpk_note_visit_occurrence_id;
+ALTER TABLE ${cdm_schema}.note DROP CONSTRAINT IF EXISTS fpk_note_visit_detail_id;
+ALTER TABLE ${cdm_schema}.specimen DROP CONSTRAINT IF EXISTS fpk_specimen_person_id;
+ALTER TABLE ${cdm_schema}.care_site DROP CONSTRAINT IF EXISTS fpk_care_site_location_id;
+ALTER TABLE ${cdm_schema}.provider DROP CONSTRAINT IF EXISTS fpk_provider_care_site_id;
+ALTER TABLE ${cdm_schema}.payer_plan_period DROP CONSTRAINT IF EXISTS fpk_payer_plan_period_payer_plan_period_id;
+ALTER TABLE ${cdm_schema}.payer_plan_period DROP CONSTRAINT IF EXISTS fpk_payer_plan_period_person_id;
+ALTER TABLE ${cdm_schema}.payer_plan_period DROP CONSTRAINT IF EXISTS fpk_payer_plan_period_payer_concept_id;
+ALTER TABLE ${cdm_schema}.drug_era DROP CONSTRAINT IF EXISTS fpk_drug_era_person_id;
+ALTER TABLE ${cdm_schema}.dose_era DROP CONSTRAINT IF EXISTS fpk_dose_era_person_id;
+ALTER TABLE ${cdm_schema}.condition_era DROP CONSTRAINT IF EXISTS fpk_condition_era_person_id;
+ALTER TABLE ${cdm_schema}.episode DROP CONSTRAINT IF EXISTS fpk_episode_person_id;
+ALTER TABLE ${cdm_schema}.episode_event DROP CONSTRAINT IF EXISTS fpk_episode_event_episode_id;
+ALTER TABLE ${cdm_schema}.concept_relationship DROP CONSTRAINT IF EXISTS fpk_concept_relationship_relationship_id;
+
+
+
+
+</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>INSPIRE Datahub Paper</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>288</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>SQL - Drop Indexes IF EXISTS</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql>--postgresql CDM Drop Indexes for OMOP Common Data Model 5.4 to speed up inserts
+
+
+DROP INDEX IF EXISTS a${cdm_schema}.xpk_care_site;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_care_site_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_note_nlp;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_note_nlp_note_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_note_nlp_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_fact_relationship_id1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_fact_relationship_id2;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_fact_relationship_id3;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_cost;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_cost_event_id;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_location;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_location_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_person;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_person_id;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_gender;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_provider;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_provider_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_observation_period;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_observation_period_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_visit_occurrence;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_visit_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_visit_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_visit_detail;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_visit_det_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_visit_det_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_visit_det_occ_id;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_condition_occurrence;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_condition_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_condition_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_condition_visit_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_drug_exposure;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_drug_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_drug_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_drug_visit_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_procedure_occurrence;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_procedure_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_procedure_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_procedure_visit_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_device_exposure;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_device_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_device_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_device_visit_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_measurement;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_measurement_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_measurement_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_measurement_visit_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_observation;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_observation_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_observation_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_observation_visit_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_death_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_note;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_note_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_note_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_note_visit_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_specimen;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_specimen_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_specimen_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_payer_plan_period;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_period_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_drug_era;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_drug_era_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_drug_era_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_dose_era;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_dose_era_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_dose_era_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_condition_era;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_condition_era_person_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_condition_era_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_episode;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_metadata;
+DROP INDEX IF EXISTS ${cdm_schema}.idx_metadata_concept_id_1;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_vocabulary;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_domain;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_concept_class;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_concept;
+DROP INDEX IF EXISTS ${cdm_schema}.xpk_relationship;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>INSPIRE Datahub Paper</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>688</xloc>
+      <yloc>432</yloc>
+      <attributes_kjc/>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>Start</from>
+      <to>Set variables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Set variables</from>
+      <to>SQL - Create Schema for Target OMOP 5.4</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL - Create Schema for Target OMOP 5.4</from>
+      <to>SQL - Create OMOP 5.4 Tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL - Create OMOP 5.4 Tables</from>
+      <to>SQL - Drop PKs IF EXISTS</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL - Drop PKs IF EXISTS</from>
+      <to>SQL - Drop FK Constraints IF EXISTS</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL - Drop FK Constraints IF EXISTS</from>
+      <to>SQL - Drop Indexes IF EXISTS</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SQL - Drop Indexes IF EXISTS</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+    <notepad>
+      <note>Create OMOP CDM version 5.4 tables
+https://ohdsi.github.io/CommonDataModel/cdm54.html</note>
+      <xloc>256</xloc>
+      <yloc>32</yloc>
+      <width>389</width>
+      <heigth>44</heigth>
+      <fontname>Ubuntu</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <attributes/>
+</job>

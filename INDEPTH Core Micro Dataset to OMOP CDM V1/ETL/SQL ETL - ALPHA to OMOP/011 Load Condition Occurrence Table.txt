@@ -1,0 +1,79 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+--create location_history table
+CREATE TABLE IF NOT EXISTS condition_occurrence
+(
+    condition_occurrence_id bigint NOT NULL,
+    person_id bigint NOT NULL,
+    condition_concept_id integer NOT NULL,
+    condition_start_date date,
+    condition_start_datetime timestamp without time zone NOT NULL,
+    condition_end_date date,
+    condition_end_datetime timestamp without time zone,
+    condition_type_concept_id integer NOT NULL,
+    condition_status_concept_id integer NOT NULL,
+    stop_reason character varying(20),
+    provider_id bigint,
+    visit_occurrence_id bigint,
+    visit_detail_id bigint,
+    condition_source_value character varying(50),
+    condition_source_concept_id integer NOT NULL,
+    condition_status_source_value character varying(50),
+    CONSTRAINT xpk_condition_occurrence PRIMARY KEY (condition_occurrence_id)
+);
+
+CREATE SEQUENCE condition_occurrence_id_seq;
+
+-- Set search path
+SET SEARCH_PATH TO  alpha_synthetic_v1_0;
+
+INSERT INTO alpha_omop_cdm_v1_0.condition_occurrence
+(
+    condition_occurrence_id,
+    person_id,
+    condition_concept_id,
+    condition_start_date,
+    condition_start_datetime,
+    condition_end_date,
+    condition_end_datetime,
+    condition_type_concept_id,
+    condition_status_concept_id,
+    stop_reason,
+    provider_id,
+    visit_occurrence_id,
+    visit_detail_id, 
+    condition_source_value,
+    condition_source_concept_id,
+    condition_status_source_value
+)
+SELECT
+	NEXTVAL('alpha_omop_cdm_v1_0.condition_occurrence_id_seq')   AS condition_occurrence_id,
+    alpha_omop_cdm_v1_0.person.person_id AS person_id,
+    CASE WHEN synthetic_hiv_testing.hiv_test_result = 0 THEN 4013105
+               WHEN synthetic_hiv_testing.hiv_test_result = 1 THEN 4013106
+                WHEN synthetic_hiv_testing.hiv_test_result = 2 THEN 4088484 
+                ELSE 0
+    END AS condition_concept_id,	
+   synthetic_hiv_testing.hiv_test_date AS condition_start_date,
+   CASE WHEN synthetic_hiv_testing.hiv_test_date IS NULL THEN '9999-12-31'
+              ELSE synthetic_hiv_testing.hiv_test_date 
+   END AS condition_start_datetime,
+    NULL AS condition_end_date,
+    NULL AS condition_end_datetime,
+    32809 AS condition_type_concept_id,
+    0 AS condition_status_concept_id,
+    NULL AS stop_reason,
+    NULL AS provider_id,
+    NULL AS visit_occurrence_id,
+    NULL AS visit_detail_id,
+    synthetic_hiv_testing.hiv_test_result AS condition_source_value,
+    0 AS condition_source_concept_id,
+    NULL AS condition_status_source_value
+FROM synthetic_hiv_testing
+INNER JOIN alpha_omop_cdm_v1_0.person
+ON CAST(alpha_omop_cdm_v1_0.person.person_source_value AS INT) = CAST(synthetic_hiv_testing.idno AS INT);
+
+
+
+

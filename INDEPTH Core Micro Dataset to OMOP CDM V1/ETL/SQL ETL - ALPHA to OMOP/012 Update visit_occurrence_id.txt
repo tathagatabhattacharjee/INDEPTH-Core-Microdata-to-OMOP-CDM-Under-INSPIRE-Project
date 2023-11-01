@@ -1,0 +1,9 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+UPDATE condition_occurrence
+SET visit_occurrence_id = visit_occurrence.visit_occurrence_id
+FROM visit_occurrence
+WHERE condition_occurrence.person_id = visit_occurrence.person_id
+AND condition_occurrence.condition_start_datetime = visit_occurrence.visit_start_datetime
+AND visit_occurrence.visit_type_concept_id = 44818519;

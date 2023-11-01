@@ -1,0 +1,172 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+--create observation table
+CREATE TABLE IF NOT EXISTS observation
+(
+    observation_id bigint NOT NULL,
+    person_id bigint NOT NULL,
+    observation_concept_id integer NOT NULL,
+    observation_date date,
+    observation_datetime timestamp without time zone NOT NULL,
+    observation_type_concept_id integer NOT NULL,
+    value_as_number numeric,
+    value_as_string character varying(60),
+    value_as_concept_id integer,
+    qualifier_concept_id integer,
+    unit_concept_id integer,
+    provider_id bigint,
+    visit_occurrence_id bigint,
+    visit_detail_id bigint,
+    observation_source_value character varying(50),
+    observation_source_concept_id integer NOT NULL,
+    unit_source_value character varying(50),
+    qualifier_source_value character varying(50),
+    observation_event_id bigint,
+    obs_event_field_concept_id integer NOT NULL,
+    value_as_datetime timestamp without time zone,
+    CONSTRAINT xpk_observation PRIMARY KEY (observation_id)
+);
+
+CREATE SEQUENCE observation_id_seq;
+
+-- Set search path
+SET SEARCH_PATH TO  alpha_synthetic_v1_0;
+
+-- Set search path
+SET SEARCH_PATH TO  alpha_synthetic_v1_0;
+
+--Insert the episode start observation (Episode entry observation) to convert the wide format to long format
+INSERT INTO alpha_omop_cdm_v1_0.observation
+(
+    observation_id, 
+    person_id, 
+    observation_concept_id, 
+    observation_date,  
+    observation_datetime, 
+    observation_type_concept_id, 
+    value_as_number, 
+    value_as_string, 
+    value_as_concept_id, 
+    qualifier_concept_id, 
+    unit_concept_id, 
+    provider_id, 
+    visit_occurrence_id, 
+    visit_detail_id, 
+    observation_source_value, 
+    observation_source_concept_id, 
+    unit_source_value, 
+    qualifier_source_value, 
+    observation_event_id, 
+    obs_event_field_concept_id, 
+    value_as_datetime 
+)
+SELECT
+    NEXTVAL('alpha_omop_cdm_v1_0.observation_id_seq')   AS observation_id,
+    alpha_omop_cdm_v1_0.person.person_id AS person_id,
+	4295659 AS observation_concept_id,
+    synthetic_residencies.entry_obs_date AS observation_date,
+   CASE WHEN synthetic_residencies.entry_obs_date IS NULL THEN '9999-12-31 00:00:00'
+             ELSE   synthetic_residencies.entry_obs_date  
+
+END AS observation_datetime,
+    45905771 AS observation_type_concept_id,
+    NULL AS value_as_number,
+    NULL AS value_as_string,
+    CASE WHEN synthetic_residencies.entry_type = 1 THEN 46235144
+	WHEN synthetic_residencies.entry_type = 2 THEN 4216316
+	WHEN synthetic_residencies.entry_type = 3 THEN 4089508
+     	WHEN synthetic_residencies.entry_type = 4 THEN 4089508
+	 ELSE 0 
+END AS value_as_concept_id,
+    CASE WHEN synthetic_residencies.entry_type = 3 THEN 44804024
+	     WHEN synthetic_residencies.entry_type = 4 THEN 44804024
+	     ELSE NULL
+	END AS qualifier_concept_id,
+    4299438 AS unit_concept_id,
+    NULL AS provider_id,
+    NULL  AS visit_occurrence_id, -- Link it as foreign key to visit_occurence_id form the visit_occurence OMOP table
+    NULL AS visit_detail_id,
+    CASE WHEN synthetic_residencies.entry_type = 1 THEN '1 - baseline recruitment' 
+	 WHEN synthetic_residencies.entry_type = 2 THEN '2 - birth'
+	 WHEN synthetic_residencies.entry_type = 3 THEN '3 - external in-migration'
+	 WHEN synthetic_residencies.entry_type = 4 THEN '4 - Internal in-migration'
+	 WHEN synthetic_residencies.entry_type = 5 THEN '5 - Found after lost to follow up '
+	 WHEN synthetic_residencies.entry_type = 6 THEN '6 - became eligible for study'
+     END AS observation_source_value,
+    0 AS observation_source_concept_id,
+    'Individual' AS unit_source_value,
+    NULL AS qualifier_source_value,
+    NULL AS observation_event_id,
+    0 AS obs_event_field_concept_id,
+    NULL AS value_as_datetime
+FROM synthetic_residencies
+INNER JOIN alpha_omop_cdm_v1_0.person
+ON CAST(alpha_omop_cdm_v1_0.person.person_source_value AS INT) = CAST(synthetic_residencies.idno AS INT);
+
+--Insert the episode end observation (Episode exit observation) to convert the wide format to long format	
+INSERT INTO alpha_omop_cdm_v1_0.observation
+(
+    observation_id, 
+    person_id, 
+    observation_concept_id, 
+    observation_date,  
+    observation_datetime, 
+    observation_type_concept_id, 
+    value_as_number, 
+    value_as_string, 
+    value_as_concept_id, 
+    qualifier_concept_id, 
+    unit_concept_id, 
+    provider_id, 
+    visit_occurrence_id, 
+    visit_detail_id, 
+    observation_source_value, 
+    observation_source_concept_id, 
+    unit_source_value, 
+    qualifier_source_value, 
+    observation_event_id, 
+    obs_event_field_concept_id, 
+    value_as_datetime 
+)
+SELECT
+    NEXTVAL('alpha_omop_cdm_v1_0.observation_id_seq')   AS observation_id,
+    alpha_omop_cdm_v1_0.person.person_id AS person_id,
+	4295659 AS observation_concept_id,
+    synthetic_residencies.exit_obs_date AS observation_date,
+    CASE WHEN synthetic_residencies.exit_obs_date IS NULL THEN '9999-12-31 00:00:00'
+             ELSE   synthetic_residencies.exit_obs_date  
+END AS observation_datetime,
+    45905771 AS observation_type_concept_id,
+    NULL AS value_as_number,
+    NULL AS value_as_string,
+   CASE WHEN synthetic_residencies.exit_type = 12 THEN 4306655
+             WHEN synthetic_residencies.exit_type = 13 THEN 4114667
+            WHEN synthetic_residencies.exit_type = 14 THEN 4114667
+            ELSE 0    
+END AS value_as_concept_id,
+CASE WHEN synthetic_residencies.exit_type = 13 THEN 44804024
+           WHEN synthetic_residencies.exit_type = 14 THEN 44804024
+           ELSE NULL
+END AS qualifier_concept_id,
+    4299438 AS unit_concept_id,
+    NULL AS provider_id,
+    NULL  AS visit_occurrence_id, -- Link it as foreign key to visit_occurence_id form the visit_occurence OMOP table
+    NULL AS visit_detail_id,
+    CASE WHEN synthetic_residencies.exit_type = 11 THEN '11 - present in study site' 
+	     WHEN synthetic_residencies.exit_type = 12 THEN '12 - death'
+	     WHEN synthetic_residencies.exit_type = 13 THEN '13 - out-migration'
+	      WHEN synthetic_residencies.exit_type = 14 THEN '14 - Internal out-migration'
+	      WHEN synthetic_residencies.exit_type = 15 THEN '15 - lost to follow-up'
+	      WHEN synthetic_residencies.exit_type = 16 THEN '16 - became ineligible for study'
+END AS observation_source_value,
+    0 AS observation_source_concept_id,
+    'Individual' AS unit_source_value,
+    NULL AS qualifier_source_value,
+    NULL AS observation_event_id,
+   0 AS obs_event_field_concept_id,
+    NULL AS value_as_datetime
+FROM synthetic_residencies
+INNER JOIN alpha_omop_cdm_v1_0.person
+ON CAST(alpha_omop_cdm_v1_0.person.person_source_value AS INT) = CAST(synthetic_residencies.idno AS INT);
+

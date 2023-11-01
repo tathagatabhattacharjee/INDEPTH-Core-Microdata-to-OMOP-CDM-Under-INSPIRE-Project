@@ -1,0 +1,7 @@
+Save repository element : INSPIRE Datahub Paper : Creation of initial version
+Rename transformation : Renamed from A01  ZA031_CMD2017_v1 to a01_za031_cmd2017_v1
+Rename transformation : Renamed from a01_za031_cmd2017_v1 to a01_extract_from_csv
+Rename transformation : Renamed from a01_extract_from_csv to a02_extract_from_csv
+Rename transformation : Renamed from b01 Load Data into Staging Table to 02 Load Data into Staging Table
+Rename transformation : Renamed from 02 Load Data into Staging Table to b01 Load Data into Staging Table
+Rename transformation : Renamed from 04B - 001 Populate Visite Occurrence to 04B - 001 Populate Visit Occurrence

@@ -1,0 +1,13 @@
+-- set search path
+SET SEARCH_PATH TO  alpha_omop_cdm_v1_0;
+
+--create fact_relationship table
+CREATE TABLE fact_relationship
+(
+  domain_concept_id_1 bigint
+, fact_id_1 BIGINT
+, domain_concept_id_2 bigint
+, fact_id_2 BIGINT
+, relationship_concept_id bigint
+);
+
