@@ -52,3 +52,4 @@ The mapping follows a detailed field-by-field approach aligned with OMOP CDM 5.4
 - EPISODE_EVENT
 - CDM_SOURCE
 
+[![DOI](https://zenodo.org/badge/704824915.svg)](https://doi.org/10.5281/zenodo.15013711)
