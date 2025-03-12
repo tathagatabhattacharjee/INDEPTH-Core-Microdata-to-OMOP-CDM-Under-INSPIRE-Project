@@ -35,6 +35,10 @@ The INDEPTH Core Microdata contains rich demographic surveillance information th
 3) ETL Execution with Pentaho:
   Open Pentaho Data Integration (Spoon).
   Execute the appropriate transformation jobs to convert INDEPTH Core Microdata to OMOP CDM.
-4) SQL-Based Data Transformation: Additional SQL scripts are available in the sql/ folder for data validation and corrections.
+4) SQL-based data Transformation is provided in the ETL SQL folder.
 
-
+**Mapping Strategy**
+The mapping follows a detailed field-by-field approach aligned with OMOP CDM 5.4 standards. Key strategies include:
+1) Mapping individual, household, and location data to the PERSON, LOCATION, and CARE_SITE tables.
+2) Linking demographic events, migrations, and vital statistics to the OBSERVATION, CONDITION_OCCURRENCE, and VISIT_OCCURRENCE tables.
+3) Aligning vaccination, treatment, and clinical encounters to DRUG_EXPOSURE and MEASUREMENT tables.
