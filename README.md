@@ -38,7 +38,17 @@ The INDEPTH Core Microdata contains rich demographic surveillance information th
 4) SQL-based data Transformation is provided in the ETL SQL folder.
 
 **Mapping Strategy**
-The mapping follows a detailed field-by-field approach aligned with OMOP CDM 5.4 standards. Key strategies include:
-1) Mapping individual, household, and location data to the PERSON, LOCATION, and CARE_SITE tables.
-2) Linking demographic events, migrations, and vital statistics to the OBSERVATION, CONDITION_OCCURRENCE, and VISIT_OCCURRENCE tables.
-3) Aligning vaccination, treatment, and clinical encounters to DRUG_EXPOSURE and MEASUREMENT tables.
+The mapping follows a detailed field-by-field approach aligned with OMOP CDM 5.4 standards. This project integrates the following OMOP CDM tables:
+
+- PERSON
+- OBSERVATION_PERIOD
+- VISIT_OCCURRENCE
+- VISIT_DETAIL
+- OBSERVATION
+- DEATH
+- LOCATION
+- CARE_SITE
+- EPISODE
+- EPISODE_EVENT
+- CDM_SOURCE
+
