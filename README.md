@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/704824915.svg)](https://doi.org/10.5281/zenodo.15013711)
+
+
 **INDEPTH Core Microdata to OMOP CDM Conversion (INSPIRE Project)**
 
 This repository provides tools, guidelines, and resources for mapping INDEPTH Core Microdata to the **OMOP CDM 5.4** structure as part of the INSPIRE Project. By integrating demographic surveillance data with clinical data in a standardized format, this effort aims to enhance data harmonization, interoperability, and population health research.
@@ -52,4 +55,4 @@ The mapping follows a detailed field-by-field approach aligned with OMOP CDM 5.4
 - EPISODE_EVENT
 - CDM_SOURCE
 
-[![DOI](https://zenodo.org/badge/704824915.svg)](https://doi.org/10.5281/zenodo.15013711)
+
